@@ -48,14 +48,16 @@ var processQuestionDiv = function () {
 	return false;
 };
 
-mainDiv.appendChild(startQuizDiv);
-
-startQuizBtn.addEventListener("click", processQuestionDiv);
-questionBtn.addEventListener("click", function () {
+var processEach = function () {
 	questionCounter++;
 	if (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
 		presentOneQuestion();
 	} else {
 		return false;
 	}
-});
+};
+
+mainDiv.appendChild(startQuizDiv);
+
+startQuizBtn.addEventListener("click", processQuestionDiv);
+questionBtn.addEventListener("click", processEach);
