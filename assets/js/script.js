@@ -22,7 +22,7 @@ var correctSound = "./assets/sfx/correctAnswer.mp3";
 var wrongSound = "./assets/sfx/wrongAnswer.mp3";
 
 var startQuizBtn = document.querySelector("#start-quiz");
-var questionBtn = document.querySelector(".answer-buttons");
+var questionChoiceBtn = document.querySelector(".answer-buttons");
 var mainDiv = document.querySelector("main");
 
 var startQuizDiv = mainDiv.removeChild(document.querySelector("#start-page"));
@@ -30,8 +30,7 @@ var questionDiv = mainDiv.removeChild(document.querySelector("#quiz-question"));
 var allIsDoneDiv = mainDiv.removeChild(document.querySelector("#all-done"));
 var highScores = mainDiv.removeChild(document.querySelector("#high-scores"));
 
-var showQuestionDiv = function ()
-{
+var showQuestionDiv = function () {
 	mainDiv.removeChild(startQuizDiv);
 	mainDiv.appendChild(questionDiv);
 };
@@ -52,17 +51,25 @@ var displayOneQuestion = function () {
 	}
 };
 
-var processEach = function ()
-{
-	// debugger;
-	checkCorrectness();
-
-	questionCounter++;
+var processEach = function () {
+	if (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
+		checkCorrectness();
+		questionCounter++;
+	} else {
+		return false;
+	}
 	if (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
 		displayOneQuestion();
 	} else {
 		return false;
 	}
+
+	// questionCounter++;
+	// if (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
+	// 	displayOneQuestion();
+	// } else {
+	// 	return false;
+	// }
 };
 
 function checkCorrectness() {
@@ -79,7 +86,8 @@ function checkCorrectness() {
 		result.textContent = "Wrong!";
 		resultSound.src = wrongSound;
 	}
-		console.log(result, resultSound);
+
+	console.log(result, resultSound);
 	resultSound.play();
 	return;
 }
@@ -87,4 +95,4 @@ function checkCorrectness() {
 mainDiv.appendChild(startQuizDiv);
 
 startQuizBtn.addEventListener("click", processQuestionDiv);
-questionBtn.addEventListener("click", processEach);
+questionChoiceBtn.addEventListener("click", processEach);
