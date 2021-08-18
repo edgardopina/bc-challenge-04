@@ -18,13 +18,18 @@ const QA_SET = [
 
 const EXAM_NUMBER_OF_QUESTIONS = 3;
 var questionCounter = 0;
+
+var startQuizBtn = document.querySelector("#start-quiz");
+var questionBtn = document.querySelector(".answer-buttons");
 var mainDiv = document.querySelector("main");
+
 var startQuizDiv = mainDiv.removeChild(document.querySelector("#start-page"));
 var questionDiv = mainDiv.removeChild(document.querySelector("#quiz-question"));
 var allIsDoneDiv = mainDiv.removeChild(document.querySelector("#all-done"));
 var highScores = mainDiv.removeChild(document.querySelector("#high-scores"));
 
 var presentOneQuestion = function () {
+	console.log("questionCounter: ", questionCounter);
 	questionDiv.querySelector("#question").innerHTML = QA_SET[questionCounter].question;
 	for (var i = 0; i < 4; ++i) {
 		questionDiv.querySelector("#btn-" + i).innerHTML = QA_SET[questionCounter].answers[i];
@@ -36,19 +41,21 @@ var showQuestionDiv = function () {
 };
 
 var processQuestionDiv = function () {
-	showQuestionDiv();
+	// showQuestionDiv();
+	mainDiv.removeChild(startQuizDiv);
+	mainDiv.appendChild(questionDiv);
 	presentOneQuestion();
+	return false;
 };
 
 mainDiv.appendChild(startQuizDiv);
 
-var startQuizBtn = document.querySelector("#start-quiz");
 startQuizBtn.addEventListener("click", processQuestionDiv);
-
-var question = document.querySelector("#answer-buttons");
-question.addEventListener("click", function () {
+questionBtn.addEventListener("click", function () {
 	questionCounter++;
-	while (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
+	if (questionCounter < EXAM_NUMBER_OF_QUESTIONS) {
 		presentOneQuestion();
+	} else {
+		return false;
 	}
 });
