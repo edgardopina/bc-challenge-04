@@ -6,7 +6,7 @@
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="./assets/css/style.css" />
-		<link rel="shortcut icon" href="#">
+		<link rel="shortcut icon" href="#" />
 		<title>Coding Quiz</title>
 	</head>
 	<body>
@@ -16,46 +16,45 @@
 					<a href="#view-high-scores">View High Scores</a>
 				</nav>
 				<div class="timer">
-					<p>Time:</p>
-					<p>0</p>
+					<p>Time: <span id="timer"></span></p>
 				</div>
 			</div>
 		</header>
 		<main>
-			<section class="start-page" id="start-page">
+			<id class="start-page" id="start-page">
 				<h1>Coding Quiz Challenge</h1>
 				<p>
 					Try to answer the following code-related questions within the time limit.Keep in mind that incorrect
 					answers will penalize your score/time by ten seconds.
 				</p>
 				<button class="btn" id="start-quiz" type="submit">Start Quiz</button>
-			</section>
-			<section class="quiz-question" id="quiz-question">
+			</id>
+			<div class="quiz-question" id="quiz-question">
 				<p id="question"></p>
 				<div class="answer-buttons" id="answer-buttons">
-					<button id="btn-0"><span id="choice0"></span></button>
-					<button id="btn-1"><span id="choice1"></span></button>
-					<button id="btn-2"><span id="choice2"></span></button>
-					<button id="btn-3"><span id="choice3"></span></button>
+					<button id="btn-0"><span id="choice-0"></span></button>
+					<button id="btn-1"><span id="choice-1"></span></button>
+					<button id="btn-2"><span id="choice-2"></span></button>
+					<button id="btn-3"><span id="choice-3"></span></button>
 				</div>
 				<p id="right-wrong"></p>
-				<audio src="" id="result-audio"></audio>
-			</section>
-			<section class="all-done" id="all-done">
+			</div>
+			<id class="all-done" id="all-done">
 				<p>All done!</p>
 				<p>Your final score is: <span id="final-score"></span>.</p>
 				<form>
 					<label for="initials">Enter initials</label>
 					<input type="text" name="initials" class="initials" />
-					<button type="submit" class="initials-btn">Submit</button>
+					<button type="submit" class="initials-btn" id="initials-btn">Submit</button>
 				</form>
-			</section>
+			</id>
 			<section class="high-scores" id="high-scores">
 				<p>High Scores</p>
 				<ol class="high-score-list"></ol>
 				<button type="button" id="go-back" class="btn">Go back</button>
 				<button type="reset" id="clear-scores" class="btn">Clear High Scores</button>
 			</section>
+			<audio src="" id="result-audio"></audio>
 		</main>
 
 		<script src="./assets/js/script.js" async defer></script>
