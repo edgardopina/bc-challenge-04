@@ -10,8 +10,8 @@
 		<title>Coding Quiz</title>
 	</head>
 	<body>
-		<header>
-			<div class="top-block">
+		<main>
+			<div class="top-block" id="top-block">
 				<nav class="high-scores">
 					<a href="#view-high-scores">View High Scores</a>
 				</nav>
@@ -19,16 +19,14 @@
 					<p>Time: <span id="timer"></span></p>
 				</div>
 			</div>
-		</header>
-		<main>
-			<id class="start-page" id="start-page">
+			<div class="start-page" id="start-page">
 				<h1>Coding Quiz Challenge</h1>
 				<p>
 					Try to answer the following code-related questions within the time limit.Keep in mind that incorrect
 					answers will penalize your score/time by ten seconds.
 				</p>
 				<button class="btn" id="start-quiz" type="submit">Start Quiz</button>
-			</id>
+			</div>
 			<div class="quiz-question" id="quiz-question">
 				<p id="question"></p>
 				<div class="answer-buttons" id="answer-buttons">
@@ -44,8 +42,8 @@
 				<p>Your final score is: <span id="final-score"></span>.</p>
 				<form>
 					<label for="initials">Enter initials</label>
-					<input type="text" name="initials" class="initials" />
-					<button type="submit" class="initials-btn" id="initials-btn">Submit</button>
+					<input type="text" name="initials" class="initials" id="input-initials" />
+					<button type="button" class="initials-btn" id="initials-btn">Submit</button>
 				</form>
 			</id>
 			<section class="high-scores" id="high-scores">
