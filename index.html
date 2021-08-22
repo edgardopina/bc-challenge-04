@@ -10,11 +10,10 @@
 		<title>Coding Quiz</title>
 	</head>
 	<body>
-
 		<main>
 			<div class="top-block" id="top-block">
-				<nav class="high-scores">
-					<a href="#view-high-scores">View High Scores</a>
+				<nav class="high-scores-nav">
+					<a href="#view-high-scores" id="view-hs">View High Scores</a>
 				</nav>
 				<div class="timer">
 					<p>Time: <span id="timer"></span></p>
@@ -29,33 +28,38 @@
 				<button class="btn" id="start-quiz" type="submit">Start Quiz</button>
 			</div>
 			<div class="quiz-question" id="quiz-question">
-				<p id="question"></p>
-				<div class="answer-buttons" id="answer-buttons">
-					<button id="btn-0"><span id="choice-0"></span></button>
-					<button id="btn-1"><span id="choice-1"></span></button>
-					<button id="btn-2"><span id="choice-2"></span></button>
-					<button id="btn-3"><span id="choice-3"></span></button>
+				<div class="a01">
+					<p class="quiz-questions" id="question"></p>
+					<div class="answer-buttons" id="answer-buttons">
+						<button class="btn" id="btn-0"><span id="choice-0"></span></button>
+						<button class="btn" id="btn-1"><span id="choice-1"></span></button>
+						<button class="btn" id="btn-2"><span id="choice-2"></span></button>
+						<button class="btn" id="btn-3"><span id="choice-3"></span></button>
+					</div>
 				</div>
 				<p class="right-wrong" id="right-wrong-qa"></p>
 			</div>
 			<id class="all-done" id="all-done">
-				<p>All done!</p>
+				<h1>All done!</h1>
 				<p>Your final score is: <span id="final-score"></span>.</p>
-				<form id="initials-form">
-					<!-- <label for="input-initials">Enter initials</label> -->
-					<p>Enter initials</p>
+				<div>
+					<form class="input-initials" id="initials-form">
+						<p>Enter initials:</p>
 
-					<input type="text" name="input-initials" class="input-initials" id="input-initials" />
-					<button type="submit" class="initials-btn" id="initials-btn">Submit</button>
-				</form>
+						<input type="text" name="input-initials" class="get-initials" id="input-initials" />
+						<button type="submit" class="btn" id="initials-btn">Submit</button>
+					</form>
+				</div>
 				<p class="right-wrong" id="right-wrong-ad"></p>
 			</id>
-			<section class="high-scores" id="high-scores">
-				<p>High Scores</p>
+			<div class="high-scores" id="high-scores">
+				<h1>High Scores</h1>
 				<ol class="highest-score-list" id="highest-score-list"></ol>
-				<button type="button" id="go-back" class="btn-scores">Go back</button>
-				<button type="reset" id="clear-scores" class="btn-scores">Clear High Scores</button>
-			</section>
+				<div class="hs-buttons">
+					<button type="button" id="go-back" class="btn">Go back</button>
+					<button type="reset" id="clear-scores" class="btn">Clear High Scores</button>
+				</div>
+			</div>
 			<audio src="" id="result-audio"></audio>
 		</main>
 

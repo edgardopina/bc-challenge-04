@@ -45,7 +45,7 @@ const QA_SET = [
 	},
 ];
 
-const TIME_LIMIT = 80;
+const TIME_LIMIT = 10000;
 const WRONG_PENALTY = 10;
 const TIME_TICK = 1000;
 const EXAM_QUESTIONS = QA_SET.length;
@@ -63,7 +63,7 @@ var intervalCtrl = 0;
 var currentScorePair = { initials: "", score: 0 };
 var highestScores = [];
 var highScoreIndex = 0;
-//#endregion variables
+//#endregion general variables
 
 //#region DOM variables
 var startQuizBtn = document.querySelector("#start-quiz");
@@ -72,6 +72,7 @@ var initialsBtn = document.querySelector("#initials-form");
 var goBackBtn = document.querySelector("#go-back");
 var clearScoresBtn = document.querySelector("#clear-scores");
 var olHighestScoresList = document.querySelector("#highest-score-list");
+var viewHsBtn = document.querySelector("#view-hs");
 
 var mainDiv = document.querySelector("main");
 var topBlockDiv = document.querySelector("#top-block");
@@ -80,6 +81,20 @@ var qAndADiv = mainDiv.removeChild(document.querySelector("#quiz-question"));
 var allDoneDiv = mainDiv.removeChild(document.querySelector("#all-done"));
 var highScoresDiv = mainDiv.removeChild(document.querySelector("#high-scores"));
 //#endregion DOM variables
+
+var processViewHs = function () {
+	clearInterval(intervalCtrl);
+	while (mainDiv.firstChild) {
+		mainDiv.removeChild(mainDiv.firstChild);
+	}
+	mainDiv.appendChild(highScoresDiv);
+	highestScores = [];
+	storedScores = localStorage.getItem(LCL_STG_KEY);
+	if (storedScores) {
+		highestScores = JSON.parse(storedScores);
+	}
+	displayHighScores();
+};
 
 //#region clearScoresBtn event listener
 var processClearScores = function () {
@@ -100,13 +115,13 @@ var processGoBack = function () {
 	mainDiv.removeChild(highScoresDiv);
 	mainDiv.appendChild(topBlockDiv);
 	mainDiv.appendChild(startQuizDiv);
-	document.querySelector("#timer").innerHTML = timeCounter;
+	timeCounter = 0;
+	document.querySelector("#timer").innerHTML = "";
 	cleanHsList();
 };
 //#endregion goBackBtn event listener
 
 //#region initialsBtn event listener
-
 var displayHighScores = function () {
 	highestScores.sort((a, b) => (a.score > b.score ? -1 : 1));
 	var highestScoresLength = highestScores.length;
@@ -178,7 +193,10 @@ var showAllDoneDiv = function () {
 var checkCorrectness = function () {
 	var choiceIndex = event.target.id.substring(BTN_ID_IDX_POS); // get choice index
 	var resultQandA = document.querySelector("#right-wrong-qa");
+	resultQandA.value = "";
 	var resultAllDone = allDoneDiv.querySelector("#right-wrong-ad");
+	resultAllDone.value = "";
+	console.log(resultAllDone, resultQandA);
 	var resultSound = document.querySelector("#result-audio");
 	if (parseInt(choiceIndex) === QA_SET[questionCounter].correctAnswer) {
 		resultQandA.innerHTML = CORRECT_MSG;
@@ -224,6 +242,7 @@ var timeHandler = function () {
 	if (timeCounter > 0) {
 		timeCounter--;
 	}
+	/******************* */
 	document.querySelector("#timer").innerHTML = timeCounter;
 	if (timeCounter === 0) {
 		clearInterval(intervalCtrl);
@@ -234,6 +253,7 @@ var timeHandler = function () {
 var startControls = function () {
 	timeCounter = TIME_LIMIT;
 	questionCounter = 0;
+	document.querySelector("#right-wrong-qa").value = "";
 	document.querySelector("#timer").innerHTML = timeCounter;
 	intervalCtrl = setInterval(timeHandler, TIME_TICK);
 };
@@ -257,3 +277,4 @@ answerChoiceBtn.addEventListener("click", processEachQuestion);
 initialsBtn.addEventListener("submit", processAllDone);
 goBackBtn.addEventListener("click", processGoBack);
 clearScoresBtn.addEventListener("click", processClearScores);
+viewHsBtn.addEventListener("click", processViewHs);
