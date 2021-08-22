@@ -10,6 +10,7 @@
 		<title>Coding Quiz</title>
 	</head>
 	<body>
+
 		<main>
 			<div class="top-block" id="top-block">
 				<nav class="high-scores">
@@ -35,22 +36,25 @@
 					<button id="btn-2"><span id="choice-2"></span></button>
 					<button id="btn-3"><span id="choice-3"></span></button>
 				</div>
-				<p id="right-wrong"></p>
+				<p class="right-wrong" id="right-wrong-qa"></p>
 			</div>
 			<id class="all-done" id="all-done">
 				<p>All done!</p>
 				<p>Your final score is: <span id="final-score"></span>.</p>
-				<form>
-					<label for="initials">Enter initials</label>
-					<input type="text" name="initials" class="initials" id="input-initials" />
-					<button type="button" class="initials-btn" id="initials-btn">Submit</button>
+				<form id="initials-form">
+					<!-- <label for="input-initials">Enter initials</label> -->
+					<p>Enter initials</p>
+
+					<input type="text" name="input-initials" class="input-initials" id="input-initials" />
+					<button type="submit" class="initials-btn" id="initials-btn">Submit</button>
 				</form>
+				<p class="right-wrong" id="right-wrong-ad"></p>
 			</id>
 			<section class="high-scores" id="high-scores">
 				<p>High Scores</p>
-				<ol class="high-score-list"></ol>
-				<button type="button" id="go-back" class="btn">Go back</button>
-				<button type="reset" id="clear-scores" class="btn">Clear High Scores</button>
+				<ol class="highest-score-list" id="highest-score-list"></ol>
+				<button type="button" id="go-back" class="btn-scores">Go back</button>
+				<button type="reset" id="clear-scores" class="btn-scores">Clear High Scores</button>
 			</section>
 			<audio src="" id="result-audio"></audio>
 		</main>
